@@ -1,0 +1,17 @@
+知华企业服务运营平台公开源码学习版 0.1.0
+Copyright 2026 上海如静知华信息科技有限公司
+官网：https://www.zhuatech.cn/
+商业咨询微信：zhuatech、zhuatech2
+
+根目录 LICENSE 仅约束项目自有源码。第三方组件保留其上游版权与许可，
+不因自有源码的非商业限制而改变第三方许可授予的权利。
+
+本项目使用 Spring、Hibernate、Flyway、MariaDB Connector/J、Vue、Vue Router、
+Vite、Nginx、MySQL Server、Eclipse Temurin 及其依赖。
+依赖说明与上游链接见 docs/第三方说明.md。
+Maven 与 npm 依赖包内的第三方 LICENSE / NOTICE 应随其分发保留。
+
+MariaDB Connector/J 作为独立 JDBC 库连接 MySQL，使用上游 LGPL 许可。
+库本身的修改、替换和为调试此类修改所需的分析，依照上游 LGPL 处理；
+自有源码许可不覆盖这些第三方库。源代码与分发说明：
+https://github.com/mariadb-corporation/mariadb-connector-j

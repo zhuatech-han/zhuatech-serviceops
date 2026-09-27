@@ -1,0 +1,14 @@
+# 知华科技 · https://www.zhuatech.cn/ · 微信 zhuatech / zhuatech2
+.env
+.env.*
+!.env.example
+backend/target/
+frontend/node_modules/
+frontend/dist/
+data/
+test-results/
+*.log
+.DS_Store
+
+backups/
+__pycache__/

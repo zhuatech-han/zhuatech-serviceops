@@ -1,0 +1,54 @@
+# Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ · 微信 zhuatech / zhuatech2
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: zhuatech_serviceops
+      MYSQL_USER: zhuatech
+      MYSQL_PASSWORD: ${DB_PASSWORD:?请设置数据库强密码}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?请设置数据库管理强密码}
+      TZ: UTC
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    volumes: ["mysql_data:/var/lib/mysql"]
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=$$MYSQL_PASSWORD mysql -h 127.0.0.1 -u $$MYSQL_USER -D $$MYSQL_DATABASE -e 'SELECT 1' >/dev/null 2>&1"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+      start_period: 30s
+    restart: unless-stopped
+  backend:
+    build: ./backend
+    environment:
+      DB_URL: jdbc:mariadb://db:3306/zhuatech_serviceops?connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true&allowLocalInfile=false
+      DB_USERNAME: zhuatech
+      DB_PASSWORD: ${DB_PASSWORD:?请设置数据库强密码}
+      SERVICEOPS_ADMIN_PASSWORD: ${SERVICEOPS_ADMIN_PASSWORD:?请设置初始管理员强密码}
+      SERVICEOPS_FILES: /app/data/files
+      SESSION_SECURE: ${SESSION_SECURE:-false}
+      JAVA_TOOL_OPTIONS: -XX:MaxRAMPercentage=65
+      TZ: UTC
+    volumes: ["service_files:/app/data"]
+    depends_on:
+      db: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+      start_period: 30s
+    restart: unless-stopped
+  web:
+    build: ./frontend
+    ports: ["${WEB_BIND:-127.0.0.1}:${WEB_PORT:-8198}:8080"]
+    depends_on:
+      backend: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:8080/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+volumes:
+  mysql_data:
+  service_files:
