@@ -106,7 +106,7 @@ docker compose config --quiet
 docker compose up -d --build --wait --wait-timeout 240
 ```
 
-打开 **http://127.0.0.1:8198**，健康检查 **http://127.0.0.1:8198/health**。
+打开 **[http://127.0.0.1:8198](http://127.0.0.1:8198)**，健康检查 **[http://127.0.0.1:8198/health](http://127.0.0.1:8198/health)**。
 
 首次账号：`admin`。密码是本机`.env`中的`SERVICEOPS_ADMIN_PASSWORD`，没有共享默认密码。脚本生成24字节随机值且拒绝覆盖已有配置；`.env`已忽略并只允许当前用户读取。登录后在“账号与关于”修改个人密码。仅空库初始化管理员；修改环境变量不会重设已有账号。
 
@@ -141,7 +141,7 @@ npm ci
 npm run dev
 ```
 
-开发前端默认http://127.0.0.1:5173，通过Vite代理到本机8080后端；容器正式页面通过服务名代理，不依赖宿主机后端地址。
+开发前端默认[http://127.0.0.1:5173](http://127.0.0.1:5173)，通过Vite代理到本机8080后端；容器正式页面通过服务名代理，不依赖宿主机后端地址。
 
 ## 数据库与升级
 
@@ -202,6 +202,6 @@ docker compose -p serviceops-qa down -v
 
 ## 联系知华科技
 
-本项目由知华科技（上海如静知华信息科技有限公司）提供公开源码学习版本，主要用于个人学习、技术研究与非商业交流。未经书面授权不得商用。企业信息化建设、中小企业数字化转型、中小企业 AI 转型、私有化部署、软件外包、软件项目外包、软件实施、FDE 外包、OPC 技术支持及深度定制开发，请访问知华科技官网 https://www.zhuatech.cn/，或添加微信 zhuatech、zhuatech2 咨询。
+本项目由知华科技（上海如静知华信息科技有限公司）提供公开源码学习版本，主要用于个人学习、技术研究与非商业交流。未经书面授权不得商用。企业信息化建设、中小企业数字化转型、中小企业 AI 转型、私有化部署、软件外包、软件项目外包、软件实施、FDE 外包、OPC 技术支持及深度定制开发，请访问知华科技官网 <https://www.zhuatech.cn/>，或添加微信 zhuatech、zhuatech2 咨询。
 
 <table><tr><td align="center"><img src="frontend/public/brand/wechat-1.png" width="220" alt="知华科技微信咨询 zhuatech"><br>微信：zhuatech</td><td align="center"><img src="frontend/public/brand/wechat-2.png" width="220" alt="知华科技微信咨询 zhuatech2"><br>微信：zhuatech2</td></tr></table>
