@@ -1,0 +1,30 @@
+# Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ · 微信：zhuatech / zhuatech2
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mariadb://localhost:3306/zhuatech_serviceops?connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true&allowLocalInfile=false}
+    username: ${DB_USERNAME:zhuatech}
+    password: ${DB_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+server:
+  servlet:
+    session:
+      timeout: 30m
+      cookie:
+        http-only: true
+        same-site: lax
+        secure: ${SESSION_SECURE:false}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+serviceops:
+  admin-password: ${SERVICEOPS_ADMIN_PASSWORD}
+  files: ${SERVICEOPS_FILES:/app/data/files}
