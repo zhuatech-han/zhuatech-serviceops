@@ -1,0 +1,6 @@
+# 知华科技 · https://www.zhuatech.cn/ · 微信 zhuatech / zhuatech2
+node_modules
+dist
+.env*
+.git
+*.log
