@@ -1,0 +1,5 @@
+# 知华科技 · https://www.zhuatech.cn/ · 微信 zhuatech / zhuatech2
+target
+.env*
+.git
+*.log
